@@ -4,8 +4,7 @@ const Tool = ({tool}) => {
     const {name, description, Price, minOrderLimit, availableQuantity, picture} = tool;
     return (
         <div>
-            <h1>{tool.length}</h1>
-            <div class="card w-96 glass">
+            <div class="card w-96 glass text-white">
                 <figure><img src={picture} alt="car!"/></figure>
                 <div class="card-body">
                     <h2 class="card-title">{name}</h2>

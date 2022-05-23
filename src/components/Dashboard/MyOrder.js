@@ -1,10 +1,10 @@
 import React from 'react';
 
-const MyHistory = () => {
+const MyOrder = () => {
 
    return (
        <div>sdfdjsfdsfs</div>
    )
 };
 
-export default MyHistory;
+export default MyOrder;

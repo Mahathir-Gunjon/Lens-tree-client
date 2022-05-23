@@ -7,7 +7,9 @@ import Home from "./components/Pages/Home/Home";
 import SignUp from "./LoginRegister/Signup";
 import Purchase from "./components/Purchase/Purchase";
 import Dashboard from "./components/Dashboard/Dashboard";
-import MyHistory from "./components/Dashboard/MyHistory";
+import MyOrder from "./components/Dashboard/MyOrder";
+// import AddReview from "./components/Dashboard/AddReview";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -23,14 +25,17 @@ function App() {
             <Dashboard />
           </RequireAuth>
         } >
-          <Route path='history' element={<MyHistory />} />
+          <Route index path='order' element={<MyOrder/>} />
+          {/* <Route path='review' element={<AddReview />} /> */}
+          {/* <Route path='profile' element={<MyHistory />} /> */}
         </Route>
         <Route path="/purchase" element={
           <RequireAuth>
             <Purchase/>
           </RequireAuth>
-        } />
+        } ></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
