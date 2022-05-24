@@ -8,12 +8,12 @@ import SignUp from "./LoginRegister/Signup";
 import Purchase from "./components/Purchase/Purchase";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MyOrder from "./components/Dashboard/MyOrder";
-// import AddReview from "./components/Dashboard/AddReview";
+import AddReview from "./components/Dashboard/AddReview";
 import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <div className=''>
+    <>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,7 +26,7 @@ function App() {
           </RequireAuth>
         } >
           <Route index path='order' element={<MyOrder/>} />
-          {/* <Route path='review' element={<AddReview />} /> */}
+          <Route path='review' element={<AddReview />} />
           {/* <Route path='profile' element={<MyHistory />} /> */}
         </Route>
         <Route path="/purchase" element={
@@ -36,7 +36,7 @@ function App() {
         } ></Route>
       </Routes>
       <ToastContainer />
-    </div>
+    </>
   );
 }
 

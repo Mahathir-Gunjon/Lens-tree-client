@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
+// import { useAuthState } from 'react-firebase-hooks/auth';
+// import auth from '../../firebase.init';
 // import useAdmin from '../hooks/useAdmin';
 
 
 const Dashboard = () => {
 
-    const [user] = useAuthState(auth)
+    // const [user] = useAuthState(auth)
     // const [admin] = useAdmin(user)
 
     return (
@@ -23,7 +23,7 @@ const Dashboard = () => {
                     <ul className="menu p-4 overflow-y-auto w-60 bg-accent text-black md:mr-4 rounded-lg">
                         {/* <!-- Sidebar content here --> */}
                         <li><NavLink to='order'>My order</NavLink></li>
-                        {/* <li><NavLink to='review'>Add Review</NavLink></li> */}
+                        <li><NavLink to='review'>Add Review</NavLink></li>
                         {/* <li><NavLink to='history'>My Profile</NavLink></li> */}
                     </ul>
 

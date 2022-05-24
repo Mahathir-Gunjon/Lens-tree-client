@@ -1,157 +1,61 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import Loading from '../Header/Loading';
+import auth from '../../firebase.init';
 
 const AddReview = () => {
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const [user] = useAuthState(auth);
 
-    const { data: items , isLoading } = useQuery('items', () => fetch('http://localhost:5000/item').then(res => res.json()))
 
-    const imageStorageKey='243070f0c2cd02651921337569298ea9';
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    /**
-     * 3 ways to store images
-     * 1. Third party storage //Free open public storage is ok for Practice project 
-     * 2. Your own storage in your own server (file system)
-     * 3. Database: Mongodb 
-     * 
-     * YUP: to validate file: Search: Yup file validation for react hook form
-    */
-    const onSubmit = async data => {
-        const image = data.image[0];
-        const formData = new FormData();
-        formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+    const onSubmit = data => {
+        console.log(data);
+        const url = `http://localhost:5000/review`;
         fetch(url, {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
-        .then(res=>res.json())
-        .then(result =>{
-            if(result.success){
-                const img = result.data.url;
-                const doctor = {
-                    name: data.name,
-                    email: data.email,
-                    specialty: data.specialty,
-                    img: img
-                }
-                // send to your database 
-                fetch('http://localhost:5000/doctor', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                    },
-                    body: JSON.stringify(doctor)
-                })
-                .then(res =>res.json())
-                .then(inserted =>{
-                    if(inserted.insertedId){
-                        toast.success('Doctor added successfully')
-                        reset();
-                    }
-                    else{
-                        toast.error('Failed to add the doctor');
-                    }
-                })
-
-            }
-            
-        })
-    }
-
-    if (isLoading) {
-        return <Loading></Loading>
+            .then(res => res.json())
+            .then(result => {
+                toast("Review added successfully", { type: "success" });
+            })
     }
 
     return (
-        <div>
-            <h1 className="text-3xl text-center font-bold mt-6">Add a New Review</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='w-full mx-auto mt-5 pt-5'>
+            <div className='text-center'>
+                <h1 className='text-5xl'>Add a review</h1>
+                <p className='text-2xl text-black'>Add a new review and Your experience</p>
+            </div>
 
-                <div className="form-control w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Name</span>
-                    </label>
-                    <input
-                        type="text"
-                        placeholder="Your Name"
-                        className="input input-bordered w-full max-w-xs"
-                        {...register("name", {
-                            required: {
-                                value: true,
-                                message: 'Name is Required'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
-                    </label>
+            <div className="lg:py-5">
+                <div className="lg:flex md:flex">
+                    <div className="lg:w-6/6 w-full">
+                        <img className='img-fluid' src="https://i.ibb.co/qCq1Dg8/undraw-add-information-j2wg.png" alt="" />
+                    </div>
+                    <div className='lg:w-5/6 text-center mx-auto h-max bg-accent py-10 mt-10'>
+                        <form className='w-[320px] mx-auto' onSubmit={handleSubmit(onSubmit)}>
+                            <textarea className="input input-bordered input-warning w-full max-w-xs" type='text-area' placeholder='Write Something you felt us and our product quality' {...register("description", { required: true })} />
+                            <br />
+                            <br />
+                            <input className="input input-bordered input-warning w-full max-w-xs" type='number' placeholder='Rating out of 5 ?' {...register("rating", { required: true })} />
+                            <br />
+                            <br />
+                            <input className="input input-bordered input-warning w-full max-w-xs" value={user.photoURL} {...register("user")} />
+                            {/* errors will return when field validation fails  */}
+                            {errors.exampleRequired && <span>This field is required</span>}
+                            <br />
+                            <br />
+                            <input className='btn btn-secondary btn-md w-full' type="submit" />
+                        </form>
+                    </div>
                 </div>
-
-                <div className="form-control w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Email</span>
-                    </label>
-                    <input
-                        type="email"
-                        placeholder="Your Email"
-                        className="input input-bordered w-full max-w-xs"
-                        {...register("email", {
-                            required: {
-                                value: true,
-                                message: 'Email is Required'
-                            },
-                            pattern: {
-                                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                message: 'Provide a valid Email'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                        {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                    </label>
-                </div>
-
-                <div className="form-control w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Specialty</span>
-                    </label>
-                    <select {...register('specialty')} class="select input-bordered w-full max-w-xs">
-                        {
-                            items.map(service => <option
-                                key={service._id}
-                                value={service.name}
-                            >{service.name}</option>)
-                        }
-                    </select>
-                </div>
-
-                <div className="form-control w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Photo</span>
-                    </label>
-                    <input
-                        type="file"
-                        className="input input-bordered w-full max-w-xs"
-                        {...register("image", {
-                            required: {
-                                value: true,
-                                message: 'Image is Required'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
-                    </label>
-                </div>
-
-                <input className='btn w-full max-w-xs text-white' type="submit" value="Add" />
-            </form>
+            </div>
         </div>
     );
 };
