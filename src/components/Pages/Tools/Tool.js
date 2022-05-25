@@ -1,19 +1,25 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Tool = ({tool}) => {
-    const {name, description, Price, minOrderLimit, availableQuantity, picture} = tool;
+const Tool = ({ tool }) => {
+    const { _id, name, description, Price, minOrderLimit, availableQuantity, picture } = tool;
+    const navigate = useNavigate();
+
+    const handleNavigateClick = id => {
+        navigate(`/tool/${id}`);
+    }
     return (
         <div>
-            <div class="card w-96 glass text-white">
-                <figure><img src={picture} alt="car!"/></figure>
-                <div class="card-body">
-                    <h2 class="card-title">{name}</h2>
+            <div className="card w-96 glass text-white">
+                <figure><img src={picture} alt="car!" /></figure>
+                <div className="card-body">
+                    <h2 className="card-title">{name}</h2>
                     <p>{description}</p>
                     <p>{Price}</p>
                     <p>{minOrderLimit}</p>
                     <p>{availableQuantity}</p>
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Learn now!</button>
+                    <div className="card-actions justify-end">
+                        <button onClick={() => handleNavigateClick(_id)} className='btn btn-primary shadow'>Order</button>
                     </div>
                 </div>
             </div>

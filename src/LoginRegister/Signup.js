@@ -42,17 +42,15 @@ const SignUp = () => {
 
 
     if (user || gUser) {
-        navigate('/appointment');
+        console.log(user || gUser);
+        navigate('/');
     }
-
-    // // if (user || gUser) {
-    // //     // console.log(user || gUser);
-    // // }
 
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
         console.log('update done');
+        navigate('/dashboard');
     }
 
     return (

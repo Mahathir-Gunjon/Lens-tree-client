@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 // import auth from '../../firebase.init';
 // import useAdmin from '../hooks/useAdmin';
@@ -29,6 +30,7 @@ const Dashboard = () => {
 
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

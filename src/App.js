@@ -10,33 +10,41 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import MyOrder from "./components/Dashboard/MyOrder";
 import AddReview from "./components/Dashboard/AddReview";
 import { ToastContainer } from "react-toastify";
+import Order from "./components/Pages/Order/Order";
+import MyPortfolio from "./components/Pages/MyPortfolio/MyPortfolio";
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/myPortfolio" element={<MyPortfolio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/tool/:toolId" element={
+          <RequireAuth>
+            <Order />
+          </RequireAuth>}
+        />
         <Route path="/dashboard" element={
           <RequireAuth>
             <Dashboard />
           </RequireAuth>
         } >
-          <Route index path='order' element={<MyOrder/>} />
+          <Route index path='order' element={<MyOrder />} />
           <Route path='review' element={<AddReview />} />
           {/* <Route path='profile' element={<MyHistory />} /> */}
         </Route>
         <Route path="/purchase" element={
           <RequireAuth>
-            <Purchase/>
+            <Purchase />
           </RequireAuth>
         } ></Route>
       </Routes>
       <ToastContainer />
-    </>
+    </div>
   );
 }
 

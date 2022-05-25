@@ -1,5 +1,5 @@
 import React from 'react';
-import useTools from '../../../Hooks/UseTools';
+import useTools from '../../../Hooks/useTools';
 import Tool from './Tool';
 import './Tools.css'
 

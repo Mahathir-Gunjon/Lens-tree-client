@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddReview = () => {
@@ -22,7 +22,7 @@ const AddReview = () => {
         })
             .then(res => res.json())
             .then(result => {
-                toast("Review added successfully", { type: "success" });
+                toast.success(result.message, 'review added');
             })
     }
 
@@ -30,7 +30,7 @@ const AddReview = () => {
         <div className='w-full mx-auto mt-5 pt-5'>
             <div className='text-center'>
                 <h1 className='text-5xl'>Add a review</h1>
-                <p className='text-2xl text-black'>Add a new review and Your experience</p>
+                <h2 className='text-2xl text-black'>Add a new review and Your experience</h2>
             </div>
 
             <div className="lg:py-5">
@@ -56,6 +56,7 @@ const AddReview = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 };
