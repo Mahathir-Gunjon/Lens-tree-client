@@ -1,15 +1,15 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-// import { useAuthState } from 'react-firebase-hooks/auth';
-// import auth from '../../firebase.init';
-// import useAdmin from '../hooks/useAdmin';
+import auth from '../../firebase.init';
+import useAdmin from '../../Hooks/useAdmin';
 
 
 const Dashboard = () => {
 
-    // const [user] = useAuthState(auth)
-    // const [admin] = useAdmin(user)
+    const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
 
     return (
         <div className='w-full lg:w-5/6 mx-auto'>
@@ -26,7 +26,7 @@ const Dashboard = () => {
                         <li><NavLink to='profile'>My Profile</NavLink></li>
                         <li><NavLink to='order'>My order</NavLink></li>
                         <li><NavLink to='review'>Add Review</NavLink></li>
-                        <li><NavLink to='users'>All Users</NavLink></li>
+                        {admin && <li><NavLink to='users'>All Users</NavLink></li>}
                     </ul>
 
                 </div>
