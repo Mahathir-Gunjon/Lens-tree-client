@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useTools from '../../../Hooks/useTools';
 
@@ -12,16 +13,40 @@ const Order = () => {
 
     const [tools, setTools] = useTools()
 
-    const { name, description, Price, minOrderLimit, availableQuantity, picture } = tools;
+    const { _id, name, description, Price, minOrderLimit, availableQuantity, picture } = tools;
 
-    const [counter, setCounter] = useState(1);
-    const incrementCounter = () => setCounter(counter + 1);
-    let decrementCounter = () => setCounter(counter - 1);
-    if (counter <= 0) {
-        decrementCounter = () => setCounter(1);
+    // const [counter, setCounter] = useState(1);
+    // const incrementCounter = () => setCounter(counter + 1);
+    // let decrementCounter = () => setCounter(counter - 1);
+    // if (counter <= 0) {
+    //     decrementCounter = () => setCounter(1);
+    // }
+
+    // order form
+    const handleOrder = event => {
+        event.preventDefault();
+        console.log(_id, name);
+        const order = {
+            orderId: _id,
+            orderName: name,
+            quantity: event.target.quantity.value,
+            buyerName: user.displayName,
+            buyerEmail: user.email,
+            phone: event.target.phone.value
+        }
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('order placed successfully');
+            })
     }
-
-    // const url = ;
 
     useEffect(() => {
         fetch(`http://localhost:5000/tool/${toolId}`)
@@ -45,19 +70,22 @@ const Order = () => {
                     </div>
                 </div>
                 <div className="mt-16">
-                    <form className='grid grid-cols-1 gap-3 justify-items-center mt-2'>
+                    <form onSubmit={handleOrder} className='grid grid-cols-1 gap-3 justify-items-center mt-2'>
+                        <input type="text" disabled value={name} class="input input-bordered w-full max-w-xs" />
                         <input type="text" disabled value={user.displayName} class="input input-bordered w-full max-w-xs" />
                         <input type="text" disabled value={user.email} class="input input-bordered w-full max-w-xs" />
                         <input type="number" name="phone" placeholder="Phone Number" class="input input-bordered w-full max-w-xs" />
-                        <div className="flex items-center justify-center">
-                            <button onClick={() => decrementCounter()} className="btn btn-primary rounded-none text-3xl font-extrabold">-</button>
-                            <input readOnly type="number" value={counter} className="input input-bordered rounded-none input-warning w-full max-w-xs" />
-                            <button onClick={() => incrementCounter()} className="btn btn-primary rounded-none text-3xl font-extrabold">+</button>
-                        </div>
+                        <input type="number" name="quantity" placeholder="Set quantity" class="input input-bordered w-full max-w-xs" />
+
                         <input type="submit" value="Submit" class="btn btn-secondary w-full max-w-xs" />
                     </form>
                 </div>
             </div>
+            {/* <div className="flex items-center justify-center">
+                            <button onClick={() => decrementCounter()} className="btn btn-primary rounded-none text-3xl font-extrabold">-</button>
+                            <input readOnly type="number" value={counter} className="input input-bordered rounded-none input-warning w-full max-w-xs" />
+                            <button onClick={() => incrementCounter()} className="btn btn-primary rounded-none text-3xl font-extrabold">+</button>
+                        </div> */}
         </div>
     );
 };

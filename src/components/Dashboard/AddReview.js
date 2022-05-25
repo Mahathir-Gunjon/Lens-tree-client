@@ -22,7 +22,7 @@ const AddReview = () => {
         })
             .then(res => res.json())
             .then(result => {
-                toast.success(result.message, 'review added');
+                toast.success('review added');
             })
     }
 

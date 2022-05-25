@@ -9,9 +9,10 @@ import Purchase from "./components/Purchase/Purchase";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MyOrder from "./components/Dashboard/MyOrder";
 import AddReview from "./components/Dashboard/AddReview";
-import { ToastContainer } from "react-toastify";
 import Order from "./components/Pages/Order/Order";
 import MyPortfolio from "./components/Pages/MyPortfolio/MyPortfolio";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

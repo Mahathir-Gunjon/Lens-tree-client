@@ -40,13 +40,12 @@ const SignUp = () => {
         signInError = <p className='text-red-500'>{error?.message || gError?.message || userError?.message}</p>
     }
 
-
-    if (user || gUser) {
-        console.log(user || gUser);
+    if (user || gUser) {;
         navigate('/');
     }
 
     const onSubmit = async data => {
+        console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
         console.log('update done');
