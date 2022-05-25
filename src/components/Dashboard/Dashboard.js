@@ -22,10 +22,11 @@ const Dashboard = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-60 bg-accent text-black md:mr-4 rounded-lg">
-
+  
                         <li><NavLink to='profile'>My Profile</NavLink></li>
                         <li><NavLink to='order'>My order</NavLink></li>
                         <li><NavLink to='review'>Add Review</NavLink></li>
+                        <li><NavLink to='users'>All Users</NavLink></li>
                     </ul>
 
                 </div>
