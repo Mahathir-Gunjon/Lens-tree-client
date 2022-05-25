@@ -10,15 +10,28 @@ const Tool = ({ tool }) => {
     }
     return (
         <div>
-            <div className="card w-96 glass text-white">
-                <figure><img src={picture} alt="car!" /></figure>
-                <div className="card-body">
+            <div className="card w-96 bg-slate-100 text-black">
+                <figure><img className='object-contain w-96 h-96 mt-[-50px]' src={picture} alt="car!" /></figure>
+                <div className="card-body h-72 mt-[-70px]">
                     <h2 className="card-title">{name}</h2>
-                    <p>{description}</p>
-                    <p>{Price}</p>
-                    <p>{minOrderLimit}</p>
-                    <p>{availableQuantity}</p>
-                    <div className="card-actions justify-end">
+                    <table className="table border-info">
+                        <thead className='bg-info'>
+                            <tr>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">MOQ</th>
+                                <th scope="col">APQ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>${Price}</td>
+                                <td>{minOrderLimit}</td>
+                                <td>{availableQuantity}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <p>{description}</p>
+                    <div className="card-actions justify-end mb-20px">
                         <button onClick={() => handleNavigateClick(_id)} className='btn btn-primary shadow'>Order</button>
                     </div>
                 </div>
