@@ -41,7 +41,7 @@ const SignUp = () => {
     }
 
     if (user || gUser) {;
-        navigate('/');
+        // navigate('/');
     }
 
     const onSubmit = async data => {
@@ -49,7 +49,6 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
         console.log('update done');
-        navigate('/dashboard');
     }
 
     return (

@@ -7,6 +7,8 @@ const MyOrder = () => {
 
     const [orders, setOrders] = useState([]);
 
+    const recentOrders = [...orders].reverse();
+
     const [user] = useAuthState(auth);
 
     useEffect(() => {
@@ -35,7 +37,7 @@ const MyOrder = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((a, index) => <tr key={a._id}>
+                            recentOrders.map((a, index) => <tr key={a._id}>
                                 <th>{index + 1}</th>
                                 <td>{a.buyerEmail}</td>
                                 <td>{a.orderName}</td>

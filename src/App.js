@@ -13,6 +13,7 @@ import Order from "./components/Pages/Order/Order";
 import MyPortfolio from "./components/Pages/MyPortfolio/MyPortfolio";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MyProfile from "./components/Dashboard/MyProfile";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         } >
           <Route index path='order' element={<MyOrder />} />
           <Route path='review' element={<AddReview />} />
-          {/* <Route path='profile' element={<MyHistory />} /> */}
+          <Route path='profile' element={<MyProfile />} />
         </Route>
         <Route path="/purchase" element={
           <RequireAuth>
