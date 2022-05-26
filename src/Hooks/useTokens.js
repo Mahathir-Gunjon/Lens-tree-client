@@ -4,9 +4,9 @@ const useTokens = user => {
     const [token, setToken] = useState('');
     useEffect(() => {
         const email = user?.user?.email;
-        const currentUser = {email: email};
-        if(email){
-            fetch(`http://localhost:5000/user/${email}`, {
+        const currentUser = { email: email };
+        if (email) {
+            fetch(`https://afternoon-eyrie-82354.herokuapp.com/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -21,7 +21,7 @@ const useTokens = user => {
                     setToken(accessToken);
                 })
         }
-    },[user])
+    }, [user])
     return [token, setToken]
 };
 

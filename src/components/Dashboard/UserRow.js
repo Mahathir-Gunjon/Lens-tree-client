@@ -6,17 +6,18 @@ const UserRow = ({ user, refetch }) => {
     const { email, role } = user;
 
     const makeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://afternoon-eyrie-82354.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => {
-                if(res.status === 403){
+                if (res.status === 403) {
                     toast.error('If you want to make admin, you need to be admin');
                 }
-                return res.json()})
+                return res.json()
+            })
             .then(data => {
                 if (data.modifiedCount > 0) {
                     refetch();

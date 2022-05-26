@@ -12,7 +12,7 @@ const AddReview = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/review`;
+        const url = `https://afternoon-eyrie-82354.herokuapp.com/review`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -56,7 +56,7 @@ const AddReview = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

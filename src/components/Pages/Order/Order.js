@@ -34,7 +34,7 @@ const Order = () => {
             buyerEmail: user.email,
             phone: event.target.phone.value
         }
-        fetch('http://localhost:5000/order', {
+        fetch('https://afternoon-eyrie-82354.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const Order = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/tool/${toolId}`)
+        fetch(`https://afternoon-eyrie-82354.herokuapp.com/tool/${toolId}`)
             .then(res => res.json())
             .then(data => setTools(data));
     }, [tools]);

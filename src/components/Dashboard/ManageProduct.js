@@ -12,7 +12,7 @@ const ManageProduct = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure you want to delete this item?');
         if (proceed) {
-            const url = `http://localhost:5000/tool/${id}`;
+            const url = `https://afternoon-eyrie-82354.herokuapp.com/tool/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
