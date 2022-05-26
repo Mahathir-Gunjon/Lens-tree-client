@@ -6,7 +6,7 @@ const UserRow = ({ user, refetch }) => {
     const { email, role } = user;
 
     const makeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://afternoon-eyrie-82354.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -30,7 +30,7 @@ const UserRow = ({ user, refetch }) => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure you want to delete this item?');
         if (proceed) {
-            const url = `http://localhost:5000/user/${email}`;
+            const url = `https://afternoon-eyrie-82354.herokuapp.com/user/${email}`;
             fetch(url, {
                 method: 'DELETE'
             })

@@ -12,24 +12,24 @@ const CheckoutForm = ({ product }) => {
 
     const { _id, quantity, buyerEmail, buyerName } = product;
 
-    // http://localhost:5000/
+    // https://afternoon-eyrie-82354.herokuapp.com/
 
     useEffect(() => {
-        if(quantity){
-            fetch('http://localhost:5000/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify({ quantity })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data?.clientSecret) {
-                    setClientSecret(data.clientSecret);
-                }
-            });
+        if (quantity) {
+            fetch('https://afternoon-eyrie-82354.herokuapp.com/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify({ quantity })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data?.clientSecret) {
+                        setClientSecret(data.clientSecret);
+                    }
+                });
         }
 
     }, [quantity])
@@ -84,7 +84,7 @@ const CheckoutForm = ({ product }) => {
                 appointment: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000/order/${_id}`, {
+            fetch(`https://afternoon-eyrie-82354.herokuapp.com/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
