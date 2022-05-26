@@ -18,10 +18,13 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
         </li>
         <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/blog">Blog</NavLink>
         </li>
+        {/* <li>
+            <NavLink to="/about">About</NavLink>
+        </li> */}
         <li>
-            <NavLink to="/myPortfolio">My Portfolio</NavLink>
+            <NavLink to="/myPortfolio">Portfolio</NavLink>
         </li>
         <li>
             {user && <NavLink to="/dashboard">Dashboard</NavLink>}
@@ -44,9 +47,9 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-start">
-                <div className="navbar-center">
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">HardCore</Link>
-                </div>
+                <Link to='/' className="btn btn-link normal-case text-xl  lg:w-[180px] w-[160px]">
+                    <img className='' src="https://i.ibb.co/yhM6315/2.png" alt="" />
+                </Link>
             </div>
             <div className="navbar-end ">
                 <div className='hidden lg:flex'>

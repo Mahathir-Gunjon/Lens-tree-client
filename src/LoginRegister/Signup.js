@@ -100,7 +100,7 @@ const SignUp = () => {
                             {errors.email?.type === 'pattern' && <span className='text-red-500'>{errors.email.message}</span>}
 
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text">Password</span>
                             </label>
                             <input
                                 type='password'

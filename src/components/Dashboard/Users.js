@@ -5,7 +5,7 @@ import UserRow from './UserRow';
 
 const Users = () => {
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://afternoon-eyrie-82354.herokuapp.com/user', {
+    const { data, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -17,10 +17,10 @@ const Users = () => {
     return (
         <div>
             <div className="flex justify-end bg-accent p-5 rounded-lg my-8 mt-[-55px]">
-                <h2 className='text-xl font-semibold'>Total Users: {users.length}</h2>
+                <h2 className='text-xl font-semibold'>Total Users: {data.length}</h2>
             </div>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>Email</th>
@@ -30,7 +30,7 @@ const Users = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map(user => <UserRow
+                            data && data?.map(user => <UserRow
                                 key={user._id}
                                 user={user}
                                 refetch={refetch}

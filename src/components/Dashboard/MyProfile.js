@@ -8,12 +8,14 @@ const MyProfile = () => {
 
     return (
         <div className="flex justify-center items-center mt-20">
-
-            <div class="card w-96 bg-accent p-8 shadow-xl">
+            <div className="card w-96 bg-slate-50 p-8 shadow-xl">
                 <h1 className="text-3xl font-semibold">My profile</h1>
-                <div class="card-body">
-                    <h2 class="card-title">{user.displayName}</h2>
-                    <p>{user.email}</p>
+                <figure className="px-10 pt-10">
+                    <img src={user?.photoURL} alt="user" className="rounded-xl" />
+                </figure>
+                <div className="card-body items-center text-center">
+                    <h2 className="card-title">{user.displayName}</h2>
+                    <p>{user?.email}</p>
                 </div>
             </div>
         </div>

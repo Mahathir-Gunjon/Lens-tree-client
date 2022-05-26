@@ -6,7 +6,7 @@ const UserRow = ({ user, refetch }) => {
     const { email, role } = user;
 
     const makeAdmin = () => {
-        fetch(`https://afternoon-eyrie-82354.herokuapp.com/user/admin/${email}`, {
+        fetch(`http://localhost:5000/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -26,11 +26,30 @@ const UserRow = ({ user, refetch }) => {
 
             })
     }
+
+    const handleDelete = (id) => {
+        const proceed = window.confirm('Are you sure you want to delete this item?');
+        if (proceed) {
+            const url = `http://localhost:5000/user/${email}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(result => {
+                    toast("Item deleted successfully", { type: "success" });
+                    const remaining = user.filter(tools => tools._id !== id);
+                    user(remaining);
+                })
+        }
+    }
+
     return (
         <tr>
             <td>{email}</td>
-            <td>{role !== 'admin' ? <button onClick={makeAdmin} class="btn btn-info btn-xs">Make Admin</button> : <button class="btn btn-accent btn-xs px-7"> Admin</button>}</td>
-            <td><button class="btn btn-outline btn-xs">Remove User</button></td>
+            <td>{role !== 'admin' ? <button onClick={makeAdmin} className="btn btn-info btn-xs">Make Admin</button> : <button className="btn btn-accent btn-xs px-7"> Admin</button>}</td>
+            <td className='text-center' style={{ width: '100px' }}>
+                <button onClick={() => handleDelete(email)} className='btn btn-xs btn-info shadow mx-1'>Delete</button>
+            </td>
         </tr>
     );
 };

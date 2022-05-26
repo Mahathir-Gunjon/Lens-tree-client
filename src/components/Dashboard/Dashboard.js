@@ -26,10 +26,16 @@ const Dashboard = () => {
                         <li><NavLink to='profile'>My Profile</NavLink></li>
                         <li><NavLink to='order'>My order</NavLink></li>
                         <li><NavLink to='review'>Add Review</NavLink></li>
-                        {admin && <li><NavLink to='users'>All Users</NavLink></li>}
+                        {admin && <>
+                            <li><NavLink to='users'>All Users</NavLink></li>
+                            <li><NavLink to='manageorders'>Manage Order</NavLink></li>
+                            <li><NavLink to='addProduct'>Add Product</NavLink></li>
+                            <li><NavLink to='manageProducts'>Manage Products</NavLink></li>
+                        </>}
+                        {/* <li><NavLink to='users'>All Users</NavLink></li>}
                         {admin && <li><NavLink to='manageorders'>Manage Order</NavLink></li>}
                         {admin && <li><NavLink to='addProduct'>Add Product</NavLink></li>}
-                        {admin && <li><NavLink to='manageProducts'>Manage Products</NavLink></li>}
+                        {admin && <li><NavLink to='manageProducts'>Manage Products</NavLink></li>} */}
                     </ul>
 
                 </div>

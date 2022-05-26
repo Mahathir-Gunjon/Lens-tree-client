@@ -13,7 +13,7 @@ const Banner = () => {
                             data-aos-delay='200'
                             className='text-xl'
                         >
-                            Best Quality tools
+                            Best Quality
                         </p>
                         <h1
                             data-aos='fade-right'
@@ -21,7 +21,7 @@ const Banner = () => {
                             data-aos-duration='900'
                             className='text-5xl font-bold'
                         >
-                            Professional tools for your business
+                            We are providing Professional Lenses with trusted products
                         </h1>
                         <p
                             data-aos='fade-right'
@@ -40,7 +40,7 @@ const Banner = () => {
                         </button>
                     </div>
                     <div className='h-[60vh] lg:w-3/6 shrink-0 flex justify-center items-center'>
-                        <img src="https://www.thespruce.com/thmb/ohk_FrDsGFWNh7qR0yglVBUGKLs=/1500x1000/filters:fill(auto,1)/SPR-HOME-8-best-chainsaws-to-buy-4136092-HL-76ff550483bd41278a35332448db5a02.jpg" className='rounded-lg' alt='' />
+                        <img src="https://i.ibb.co/KrPFhMQ/Untitlederts-design.png" className='rounded-lg' alt='' />
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@ const Order = () => {
             buyerEmail: user.email,
             phone: event.target.phone.value
         }
-        fetch('https://afternoon-eyrie-82354.herokuapp.com/order', {
+        fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const Order = () => {
     }
 
     useEffect(() => {
-        fetch(`https://afternoon-eyrie-82354.herokuapp.com/tool/${toolId}`)
+        fetch(`http://localhost:5000/tool/${toolId}`)
             .then(res => res.json())
             .then(data => setTools(data));
     }, [tools]);
@@ -71,13 +71,13 @@ const Order = () => {
                 </div>
                 <div className="mt-16">
                     <form onSubmit={handleOrder} className='grid grid-cols-1 gap-3 justify-items-center mt-2'>
-                        <input type="text" disabled value={name} class="input input-bordered w-full max-w-xs" />
-                        <input type="text" disabled value={user.displayName} class="input input-bordered w-full max-w-xs" />
-                        <input type="text" disabled value={user.email} class="input input-bordered w-full max-w-xs" />
-                        <input type="number" name="phone" placeholder="Phone Number" class="input input-bordered w-full max-w-xs" />
-                        <input type="number" name="quantity" placeholder="Set quantity" class="input input-bordered w-full max-w-xs" />
+                        <input type="text" disabled value={name} className="input input-bordered w-full max-w-xs" />
+                        <input type="text" disabled value={user.displayName} className="input input-bordered w-full max-w-xs" />
+                        <input type="text" disabled value={user.email} className="input input-bordered w-full max-w-xs" />
+                        <input type="number" name="phone" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
+                        <input type="number" name="quantity" placeholder="Set quantity" className="input input-bordered w-full max-w-xs" />
 
-                        <input type="submit" value="Submit" class="btn btn-secondary w-full max-w-xs" />
+                        <input type="submit" value="Submit" className="btn btn-secondary w-full max-w-xs" />
                     </form>
                 </div>
             </div>

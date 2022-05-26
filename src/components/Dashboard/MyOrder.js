@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyOrder = () => {
@@ -16,7 +16,7 @@ const MyOrder = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://afternoon-eyrie-82354.herokuapp.com/order?buyerEmail=${user.email}`, {
+            fetch(`http://localhost:5000/order?buyerEmail=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,15 +39,15 @@ const MyOrder = () => {
             <div className="flex justify-end bg-accent p-5 rounded-lg my-8 mt-[-55px]">
                 <h2 className='text-xl font-semibold'>My Total Orders: {orders.length}</h2>
             </div>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Email</th>
                             <th>Product</th>
                             <th>Quantity</th>
-                            {/* <th>Payment</th> */}
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,13 +57,14 @@ const MyOrder = () => {
                                 <td>{a.buyerEmail}</td>
                                 <td>{a.orderName}</td>
                                 <td>{a.quantity}</td>
-                                {/* <td>
-                                    {(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
+                                <td>
+                                    <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-xs btn-success'>pay</button></Link>
+                                    {/* {(a.Price && !a.paid) && }
                                     {(a.price && a.paid) && <div>
                                         <p><span className='text-success'>Paid</span></p>
                                         <p>Transaction id: <span className='text-success'>{a.transactionId}</span></p>
-                                    </div>}
-                                </td> */}
+                                    </div>} */}
+                                </td>
                             </tr>)
                         }
 

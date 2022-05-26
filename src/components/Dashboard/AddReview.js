@@ -12,7 +12,7 @@ const AddReview = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const url = `https://afternoon-eyrie-82354.herokuapp.com/review`;
+        const url = `http://localhost:5000/review`;
         fetch(url, {
             method: 'POST',
             headers: {

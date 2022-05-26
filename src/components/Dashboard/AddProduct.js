@@ -15,7 +15,7 @@ const AddProduct = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const url = `https://afternoon-eyrie-82354.herokuapp.com/tool`;
+        const url = `http://localhost:5000/tool`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -32,7 +32,7 @@ const AddProduct = () => {
     return (
         <>
             <div>
-                <div className="flex justify-end bg-accent p-5 rounded-lg my-8 mt-[-55px]">
+                <div className="flex justify-end bg-accent p-5 rounded-lg my-8 mt-[-55px] card">
                     <h2 className='text-xl font-semibold'>Add a new Product</h2>
                 </div>
 
@@ -56,7 +56,7 @@ const AddProduct = () => {
                                 {/* errors will return when field validation fails  */}
                                 {errors.exampleRequired && <span>This field is required</span>}
 
-                                <input className='btn btn-block btn-info text-xl' type="submit" value="Add" />
+                                <input className='btn btn-block btn-outline text-xl' type="submit" value="Add" />
                             </form>
                         </div>
                     </div>
